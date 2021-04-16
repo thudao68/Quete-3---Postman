@@ -1,0 +1,150 @@
+{
+	"info": {
+		"_postman_id": "d46f8d30-44bf-4efa-a6cb-7221708e3cbb",
+		"name": "API Covid-19",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "France",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let responseJson = pm.response.json()\r",
+							"pm.test(\"response for France\", function () {\r",
+							"    pm.expect(responseJson.country).to.eql(\"France\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://coronavirus-19-api.herokuapp.com/countries/france",
+					"protocol": "https",
+					"host": [
+						"coronavirus-19-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"countries",
+						"france"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "abc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"response for incorect country\", function () {\r",
+							"    console.log(pm.collectionVariables.get(\"country\"))\r",
+							"    if (pm.collectionVariables.get(\"country\") === \"abc\") {\r",
+							"    pm.response.to.be(\"Country not found\")\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://coronavirus-19-api.herokuapp.com/countries/{{country}}?{{country}}=abc",
+					"protocol": "https",
+					"host": [
+						"coronavirus-19-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"countries",
+						"{{country}}"
+					],
+					"query": [
+						{
+							"key": "{{country}}",
+							"value": "abc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
